@@ -27,17 +27,23 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     // Inicializacion primera fila de forma aleatoria
+    /*
     qsrand(time(NULL));
     for(int j = 0; j < MATRIX_SIZE; j++) {
         bool visible = qrand() % 2 == 1;
         widgetMatrix[0][j]->setVisible(visible);
         boolMatrix[0][j] = visible;
     }
+    */
+    // Inicializacion de celula del centro
+    widgetMatrix[0][(MATRIX_SIZE - 1) / 2]->setVisible(true);
+    boolMatrix[0][(MATRIX_SIZE - 1) / 2] = true;
 
     // Reglas
     //int reglas[] = {0, 0, 1, 1, 1, 1, 0, 0}; // 60
-    int reglas[] = {0, 0, 0, 1, 1, 1, 1, 0}; // 30
+    //int reglas[] = {0, 0, 0, 1, 1, 1, 1, 0}; // 30
     //int reglas[] = {1, 0, 1, 1, 0, 1, 1, 0}; // 182
+    int reglas[] = {0, 1, 0, 1, 1, 0, 1, 0}; // 90
 
     // El juego mierdero de la vida
     int izq, cent, der;
@@ -48,7 +54,6 @@ MainWindow::MainWindow(QWidget *parent) :
                 izq = 0;
             else
                 izq = boolMatrix[i][j - 1] ? 1 : 0;
-            //qDebug() << "Izquierda " << izq;
             // Centro
             cent = boolMatrix[i][j] ? 1 : 0;
             // Derecha
