@@ -4,19 +4,20 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     scene = new QGraphicsScene(this);
-    scene->setBackgroundBrush(Qt::white);
     ui->graphicsView->setScene(scene);
 }
 
 void MainWindow::showEvent(QShowEvent* event) {
     QWidget::showEvent(event);
 
+    scene->setBackgroundBrush(Qt::white);
+
     int height = ui->graphicsView->geometry().height() / MATRIX_SIZE;
     int width = ui->graphicsView->geometry().width() / MATRIX_SIZE;
 
     for (int i = 0; i < MATRIX_SIZE; i++) {
         for (int j = 0; j < MATRIX_SIZE; j++) {
-            QGraphicsRectItem* rect = new QGraphicsRectItem(i * height, j * width, height, width);
+            QGraphicsRectItem* rect = new QGraphicsRectItem(i * width, j * height, height, width);
             qGraphicsRectMatrix[i][j] = rect;
             boolMatrix[i][j] = false;
             scene->addItem(rect);
