@@ -1,42 +1,30 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    QWidget *w, *ww;
-    QVBoxLayout *l;
+    scene = new QGraphicsScene(this);
+    scene->setBackgroundBrush(Qt::white);
+    ui->graphicsView->setScene(scene);
+}
 
-    // Creación
+void MainWindow::showEvent(QShowEvent* event) {
+    QWidget::showEvent(event);
+
+    int height = ui->graphicsView->geometry().height() / MATRIX_SIZE;
+    int width = ui->graphicsView->geometry().width() / MATRIX_SIZE;
+
     for (int i = 0; i < MATRIX_SIZE; i++) {
         for (int j = 0; j < MATRIX_SIZE; j++) {
-            w = new QWidget(this);
-            ww = new QWidget(this);
-            l = new QVBoxLayout(ww);
-            l->setMargin(0);
-            w->setStyleSheet("background: #333;");
-            l->addWidget(w);
-            ww->setLayout(l);
-            widgetMatrix[i][j] = w;
-            w->hide();
+            QGraphicsRectItem* rect = new QGraphicsRectItem(i * height, j * width, height, width);
+            qGraphicsRectMatrix[i][j] = rect;
             boolMatrix[i][j] = false;
-            ui->gridLayout->addWidget(ww, i, j);
+            scene->addItem(rect);
         }
     }
 
-    // Inicializacion primera fila de forma aleatoria
-    /*
-    qsrand(time(NULL));
-    for(int j = 0; j < MATRIX_SIZE; j++) {
-        bool visible = qrand() % 2 == 1;
-        widgetMatrix[0][j]->setVisible(visible);
-        boolMatrix[0][j] = visible;
-    }
-    */
     // Inicializacion de celula del centro
-    widgetMatrix[0][(MATRIX_SIZE - 1) / 2]->setVisible(true);
+    qGraphicsRectMatrix[(MATRIX_SIZE - 1) / 2][0]->setBrush(Qt::black);
     boolMatrix[0][(MATRIX_SIZE - 1) / 2] = true;
 
     // Reglas
@@ -61,13 +49,15 @@ MainWindow::MainWindow(QWidget *parent) :
                 der = 0;
             else
                 der = boolMatrix[i][j + 1]? 1 : 0;
+
             // Evaluar regla
             bool visible = reglas[izq * 4 + cent * 2 + der * 1] == 1;
-            widgetMatrix[i + 1][j]->setVisible(visible);
-            boolMatrix[i + 1][j] = visible;
+            if (visible) {
+                qGraphicsRectMatrix[j][i + 1]->setBrush(Qt::black);
+                boolMatrix[i + 1][j] = visible;
+            }
         }
     }
-
 }
 
 MainWindow::~MainWindow()
