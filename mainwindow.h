@@ -6,6 +6,8 @@
 #include <QGraphicsScene>
 #include "cell.h"
 #include "environment.h"
+#include <QDebug>
+
 
 namespace Ui {
     class MainWindow;

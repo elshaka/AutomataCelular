@@ -13,7 +13,14 @@ void MainWindow::showEvent(QShowEvent* event) {
     int height = ui->graphicsView->geometry().height() / MATRIX_SIZE;
     int width = ui->graphicsView->geometry().width() / MATRIX_SIZE;
     environment->render(height,width);
-    environment->wolframCellular();
+
+    //modelo basico de Wolfram
+    //environment->wolframCellular();
+
+    //Juego de la vida
+    environment->randomGame();
+    //environment->gameOfLife();
+
 }
 
 MainWindow::~MainWindow()
