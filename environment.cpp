@@ -65,8 +65,9 @@ void Environment::randomGame(){
 
 void Environment::gameOfLife(){
 //calcula la vida para la siguiente generacion
-  for (int y = 0; y < MATRIX_SIZE - 1; y++) {
-        for (int x = 0; x < MATRIX_SIZE; x++){
+  //problema con definicion de -1
+  for (int y = 1; y < MATRIX_SIZE - 1; y++) {
+        for (int x = 1; x < MATRIX_SIZE - 1; x++){
             int neighbors=0;
             for (int j = -1; j <= 1; j++) {
                 for (int i = -1; i <= 1; i++) {
@@ -78,7 +79,7 @@ void Environment::gameOfLife(){
            else if (cells[x][y]->isAlive() && (neighbors >  3)) cells[x][y]->setWillLive(0);
            else if (cells[x][y]->isAlive() && (neighbors == 3)) cells[x][y]->setWillLive(1);
            else cells[x][y]->setWillLive(cells[x][y]->isAlive()? 1 : 0);
-        }
+          }
     }
     //cargamos el futuro valor al tablero
     nextGame();

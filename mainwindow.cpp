@@ -19,11 +19,16 @@ void MainWindow::showEvent(QShowEvent* event) {
 
     //Juego de la vida
     environment->randomGame();
-    //environment->gameOfLife();
+    environment->gameOfLife();
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+      environment->gameOfLife();
 }

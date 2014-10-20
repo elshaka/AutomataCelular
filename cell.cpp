@@ -2,7 +2,7 @@
 
 Cell::Cell(int x, int y, int height, int width) : QGraphicsRectItem(x, y, height, width) {
     setAlive(false);
-    this->setPen(QPen( Qt::gray, 1, Qt::SolidLine));
+    this->setPen(QPen( Qt::gray, 0, Qt::SolidLine));
 
 
 }
