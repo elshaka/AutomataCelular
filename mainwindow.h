@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#define MATRIX_SIZE 41
+#define MATRIX_SIZE 51
 
 #include <QMainWindow>
 #include <QGraphicsScene>

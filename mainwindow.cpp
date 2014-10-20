@@ -24,7 +24,7 @@ void MainWindow::showEvent(QShowEvent* event) {
     }
 
     // Inicializacion de celula del centro
-    cells[(MATRIX_SIZE - 1) / 2][0]->setAlive(true);
+    cells[MATRIX_SIZE / 2 - 1][0]->setAlive(true);
 
     // Reglas
     //int rules[] = {0, 0, 1, 1, 1, 1, 0, 0}; // 60
@@ -34,25 +34,25 @@ void MainWindow::showEvent(QShowEvent* event) {
 
     // El juego mierdero de la vida
     int izq, cent, der;
-    for (int i = 0; i < MATRIX_SIZE - 1; i++) {
-        for (int j = 0; j < MATRIX_SIZE; j++) {
+    for (int j = 0; j < MATRIX_SIZE - 1; j++) {
+        for (int i = 0; i < MATRIX_SIZE; i++) {
             // Izquierda
-            if (j == 0)
+            if (i == 0)
                 izq = 0;
             else
-                izq = cells[i][j - 1]->isAlive() ? 1 : 0;
+                izq = cells[i - 1][j]->isAlive() ? 1 : 0;
             // Centro
             cent = cells[i][j]->isAlive() ? 1 : 0;
             // Derecha
-            if (j == MATRIX_SIZE - 1)
+            if (i == MATRIX_SIZE - 1)
                 der = 0;
             else
-                der = cells[i][j + 1]->isAlive() ? 1 : 0;
+                der = cells[i + 1][j]->isAlive() ? 1 : 0;
 
             // Evaluar regla
             bool alive = rules[izq * 4 + cent * 2 + der * 1] == 1;
 
-            cells[j][i + 1]->setAlive(alive);
+            cells[i][j + 1]->setAlive(alive);
         }
     }
 }
