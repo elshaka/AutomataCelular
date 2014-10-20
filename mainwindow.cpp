@@ -3,23 +3,24 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    scene = new QGraphicsScene(this);
-    ui->graphicsView->setScene(scene);
+    environment = new Environment(this);
+    ui->graphicsView->setScene(environment);
 }
 
 void MainWindow::showEvent(QShowEvent* event) {
     QWidget::showEvent(event);
 
-    scene->setBackgroundBrush(Qt::white);
-
     int height = ui->graphicsView->geometry().height() / MATRIX_SIZE;
     int width = ui->graphicsView->geometry().width() / MATRIX_SIZE;
 
-    for (int i = 0; i < MATRIX_SIZE; i++) {
+
+    environment->render(height,width);
+    environment->wolframCellular();
+    /*for (int i = 0; i < MATRIX_SIZE; i++) {
         for (int j = 0; j < MATRIX_SIZE; j++) {
             Cell* cell = new Cell(i * width, j * height, height, width);
             cells[i][j] = cell;
-            scene->addItem(cell);
+            environment->addItem(cell);
         }
     }
 
@@ -29,7 +30,7 @@ void MainWindow::showEvent(QShowEvent* event) {
     // Reglas
     //int rules[] = {0, 0, 1, 1, 1, 1, 0, 0}; // 60
     //int rules[] = {0, 0, 0, 1, 1, 1, 1, 0}; // 30
-    int rules[] = {1, 0, 1, 1, 0, 1, 1, 0}; // 182
+    int rules[] = {0, 1, 1, 0, 1, 1, 0, 1}; // 182
     //int rules[] = {0, 1, 0, 1, 1, 0, 1, 0}; // 90
 
     // El juego mierdero de la vida
@@ -55,6 +56,7 @@ void MainWindow::showEvent(QShowEvent* event) {
             cells[i][j + 1]->setAlive(alive);
         }
     }
+*/
 }
 
 MainWindow::~MainWindow()
