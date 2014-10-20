@@ -1,5 +1,5 @@
 #include "environment.h"
-#include <QDebug>
+#include <QTime>
 
 Environment::Environment(QObject *parent):QGraphicsScene(parent){
     setBackgroundBrush(Qt::white);
@@ -53,6 +53,7 @@ void Environment::wolframCellular(){
 void Environment::randomGame(){
   int high=1;
   int low=0;
+  qsrand(QTime::currentTime().msec());
   for (int y = 0; y < MATRIX_SIZE; y++) {
       for (int x = 0; x < MATRIX_SIZE; x++){
           bool alive = qrand() % ((high + 1) - low) + low;
