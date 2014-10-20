@@ -29,8 +29,8 @@ void MainWindow::showEvent(QShowEvent* event) {
     // Reglas
     //int rules[] = {0, 0, 1, 1, 1, 1, 0, 0}; // 60
     //int rules[] = {0, 0, 0, 1, 1, 1, 1, 0}; // 30
-    //int rules[] = {1, 0, 1, 1, 0, 1, 1, 0}; // 182
-    int rules[] = {0, 1, 0, 1, 1, 0, 1, 0}; // 90
+    int rules[] = {1, 0, 1, 1, 0, 1, 1, 0}; // 182
+    //int rules[] = {0, 1, 0, 1, 1, 0, 1, 0}; // 90
 
     // El juego mierdero de la vida
     int izq, cent, der;
