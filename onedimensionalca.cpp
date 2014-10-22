@@ -13,12 +13,12 @@ void OneDimensionalCA::randomize() {
             cells[x][y]->setAlive(false);
 }
 
-void OneDimensionalCA::simulate() {
+void OneDimensionalCA::simulate(int rules[]) {
     cells[MATRIX_SIZE / 2 - 1][0]->setAlive(true);
     // Reglas
     //int rules[] = {0, 0, 1, 1, 1, 1, 0, 0}; // 60
     //int rules[] = {0, 0, 0, 1, 1, 1, 1, 0}; // 30
-    int rules[] = {0, 1, 1, 0, 1, 1, 0, 1}; // 182
+    //int rules[] = {0, 1, 1, 0, 1, 1, 0, 1}; // 182
     //int rules[] = {0, 1, 0, 1, 1, 0, 1, 0}; // 90
     int left, center, right;
 

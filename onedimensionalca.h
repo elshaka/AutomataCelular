@@ -11,7 +11,7 @@ public:
 signals:
 
 public slots:
-    virtual void simulate();
+    virtual void simulate(int rules[]);
 };
 
 #endif // ONEDIMENSIONALCA_H
