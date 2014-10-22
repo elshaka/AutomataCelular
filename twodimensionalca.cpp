@@ -6,7 +6,7 @@ void TwoDimensionalCA::randomize(){
     qsrand(QTime::currentTime().msec());
     for (int y = 1; y < MATRIX_SIZE - 1; y++)
         for (int x = 1; x < MATRIX_SIZE - 1; x++)
-            cells[x][y]->setAlive(qrand() % 2 == 1);
+            cells[x][y]->setAlive(qrand() % 2);
 }
 
 void TwoDimensionalCA::simulate() {

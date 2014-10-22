@@ -6,7 +6,7 @@ void OneDimensionalCA::randomize() {
     qsrand(QTime::currentTime().msec());
     // Primera fila aleatoria
     for (int x = 0; x < MATRIX_SIZE; x++)
-        cells[x][0]->setAlive(qrand() % 2 == 1);
+        cells[x][0]->setAlive(qrand() % 2);
     // Resto de filas en blanco
     for (int y = 1; y < MATRIX_SIZE; y++)
         for (int x = 0; x < MATRIX_SIZE; x++)
