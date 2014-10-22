@@ -21,6 +21,7 @@ public:
     Cell* cells[MATRIX_SIZE][MATRIX_SIZE];
     explicit MainWindow(QWidget *parent = 0);
     void showEvent(QShowEvent *event);
+    void enabledRule(bool enabledRule);
     ~MainWindow();
 
 private:
