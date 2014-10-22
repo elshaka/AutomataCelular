@@ -4,10 +4,10 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include <QTimer>
 #include "cell.h"
-#include "environment.h"
-#include <QDebug>
-
+#include "onedimensionalca.h"
+#include "twodimensionalca.h"
 
 namespace Ui {
     class MainWindow;
@@ -17,14 +17,11 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    Environment* environment;
+    CellularAutomaton *automaton;
     Cell* cells[MATRIX_SIZE][MATRIX_SIZE];
     explicit MainWindow(QWidget *parent = 0);
     void showEvent(QShowEvent *event);
     ~MainWindow();
-
-private slots:
-    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

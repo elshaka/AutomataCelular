@@ -3,32 +3,26 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    environment = new Environment(this);
-    ui->graphicsView->setScene(environment);
+    //automaton = new OneDimensionalCA(this);
+    automaton = new TwoDimensionalCA(this);
+    ui->graphicsView->setScene(automaton);
+    connect(ui->pushButton, SIGNAL(clicked()), automaton, SLOT(simulate()));
 }
 
 void MainWindow::showEvent(QShowEvent* event) {
+    int height, width;
+
     QWidget::showEvent(event);
+    height = ui->graphicsView->geometry().height() / MATRIX_SIZE;
+    width = ui->graphicsView->geometry().width() / MATRIX_SIZE;
+    automaton->render(height, width);
+    automaton->randomize();
 
-    int height = ui->graphicsView->geometry().height() / MATRIX_SIZE;
-    int width = ui->graphicsView->geometry().width() / MATRIX_SIZE;
-    environment->render(height,width);
-
-    //modelo basico de Wolfram
-    //environment->wolframCellular();
-
-    //Juego de la vida
-    environment->randomGame();
-    environment->gameOfLife();
-
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), automaton, SLOT(simulate()));
+    timer->start(100);
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
-}
-
-void MainWindow::on_pushButton_clicked()
-{
-      environment->gameOfLife();
 }

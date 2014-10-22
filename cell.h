@@ -3,14 +3,14 @@
 
 #include <QGraphicsRectItem>
 #include <QBrush>
-#include <QPen>
+
 class Cell : public QGraphicsRectItem {
     bool alive;
-    bool thisWillLive;
+    bool nextAlive;
 public:
     Cell(int x, int y, int height, int width);
     void setAlive(bool alive);
-    void setWillLive(bool willLive);
+    void setNextAlive(bool nextAlive);
     bool isAlive();
     bool willLive();
 };

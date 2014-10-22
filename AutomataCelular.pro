@@ -15,10 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     cell.cpp \
-    environment.cpp
+    cellularautomaton.cpp \
+    onedimensionalca.cpp \
+    twodimensionalca.cpp
 
 HEADERS  += mainwindow.h \
     cell.h \
-    environment.h
+    cellularautomaton.h \
+    onedimensionalca.h \
+    twodimensionalca.h
 
 FORMS    += mainwindow.ui

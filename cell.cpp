@@ -2,24 +2,22 @@
 
 Cell::Cell(int x, int y, int height, int width) : QGraphicsRectItem(x, y, height, width) {
     setAlive(false);
-    this->setPen(QPen( Qt::gray, 0, Qt::SolidLine));
-
-
+    setNextAlive(false);
 }
 
 bool Cell::isAlive() {
-    return this->alive;
+    return alive;
 }
 
-bool Cell::willLive(){
-     return this->thisWillLive;
+bool Cell::willLive() {
+     return nextAlive;
 }
 
 void Cell::setAlive(bool alive) {
-    this->setBrush(alive ? Qt::black : Qt::white);
     this->alive = alive;
+    setBrush(alive ? Qt::black : Qt::white);
 }
 
-void Cell::setWillLive(bool willLive){
-     this->thisWillLive=willLive;
+void Cell::setNextAlive(bool nextAlive){
+     this->nextAlive = nextAlive;
 }
