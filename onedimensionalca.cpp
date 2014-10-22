@@ -1,8 +1,6 @@
 #include "onedimensionalca.h"
 
-OneDimensionalCA::OneDimensionalCA(QObject *parent) : CellularAutomaton(parent) {
-    setRule(182);
-}
+OneDimensionalCA::OneDimensionalCA(QObject *parent) : CellularAutomaton(parent) {}
 
 void OneDimensionalCA::setRule(int rule) {
     for (int i = 0; i < 8; i++)

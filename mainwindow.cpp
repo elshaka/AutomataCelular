@@ -4,6 +4,7 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     timer = new QTimer(this);
+    timer->setInterval(100);
     oneDimensionalCA = new OneDimensionalCA(this);
     twoDimensionalCA = new TwoDimensionalCA(this);
     currentCA = oneDimensionalCA;
@@ -25,7 +26,7 @@ void MainWindow::showEvent(QShowEvent* event) {
 void MainWindow::simulate() {
     bool run = sender() == ui->runButton;
     if (run)
-        timer->start(100);
+        timer->start();
     else
         timer->stop();
 
