@@ -13,7 +13,7 @@ public:
     void setNextAlive(bool nextAlive);
     bool isAlive();
     bool willLive();
-    void mousePressEvent(QGraphicsSceneMouseEvent * event);
+    void mousePressEvent(QGraphicsSceneMouseEvent */*event*/);
 };
 
 #endif // CELL_H

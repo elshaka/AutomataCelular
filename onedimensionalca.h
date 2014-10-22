@@ -5,13 +5,13 @@
 
 class OneDimensionalCA : public CellularAutomaton {
     Q_OBJECT
+    int rule[8];
 public:
     OneDimensionalCA(QObject *parent = 0);
-    virtual void randomize();
-signals:
-
 public slots:
-    virtual void simulate(int rules[]);
+    void setRule(int rule);
+    virtual void randomize();
+    virtual void simulate();
 };
 
 #endif // ONEDIMENSIONALCA_H

@@ -8,11 +8,8 @@ class TwoDimensionalCA: public CellularAutomaton
     Q_OBJECT
 public:
     TwoDimensionalCA(QObject *parent = 0);
-    virtual void randomize();
-
-signals:
-
 public slots:
+    virtual void randomize();
     virtual void simulate();
 };
 #endif // TWODIMENSIONALCA_H

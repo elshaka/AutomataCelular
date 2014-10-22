@@ -3,36 +3,57 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    //automaton = new OneDimensionalCA(this);
-    automaton = new TwoDimensionalCA(this);
-    ui->graphicsView->setScene(automaton);
-    connect(ui->pushButton, SIGNAL(clicked()), automaton, SLOT(simulate()));
-    connect(ui->oneDimensionalButton, SIGNAL(toggled(bool)), ui->widgetRegla, SLOT(setVisible(bool)));
-    connect(ui->reglaTxt, SIGNAL(textChanged(QString)), this, SLOT(rulerLoad(QString)));
+    timer = new QTimer(this);
+    oneDimensionalCA = new OneDimensionalCA(this);
+    twoDimensionalCA = new TwoDimensionalCA(this);
+    currentCA = oneDimensionalCA;
+    ui->graphicsView->setScene(currentCA);
+    ((OneDimensionalCA*) oneDimensionalCA)->setRule(ui->ruleSpinBox->value());
+
+    connect(ui->oneDimensionalButton, SIGNAL(toggled(bool)), this, SLOT(changeAutomaton(bool)));
+    connect(ui->ruleSpinBox, SIGNAL(valueChanged(int)), (OneDimensionalCA*) oneDimensionalCA, SLOT(setRule(int)));
+    connect(ui->runButton, SIGNAL(clicked()), this, SLOT(simulate()));
+    connect(ui->stopButton, SIGNAL(clicked()), this, SLOT(simulate()));
+    connectWithCurrentCA();
 }
 
 void MainWindow::showEvent(QShowEvent* event) {
-    int height, width;
-
     QWidget::showEvent(event);
-    height = ui->graphicsView->geometry().height() / MATRIX_SIZE;
-    width = ui->graphicsView->geometry().width() / MATRIX_SIZE;
-    automaton->render(height, width);
-    automaton->randomize();
-
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), automaton, SLOT(simulate()));
-    timer->start(100);
+    currentCA->render(getCellHeight(), getCellWidth());
 }
 
-void MainWindow::rulerLoad(QString valeRule){
-    numberRuler =  valeRule.toInt();
-    int rules[8];
-    for(int i=0; i<8 ; i++)
-       rules[i] = numberRuler & (1<<i);
+void MainWindow::simulate() {
+    bool run = sender() == ui->runButton;
+    if (run)
+        timer->start(100);
+    else
+        timer->stop();
 
+    ui->runButton->setEnabled(!run);
+    ui->stopButton->setEnabled(run);
 }
 
+void MainWindow::connectWithCurrentCA() {
+    connect(ui->clearButton, SIGNAL(clicked()), currentCA, SLOT(clearCells()));
+    connect(ui->randomizeButton, SIGNAL(clicked()), currentCA, SLOT(randomize()));
+    connect(timer, SIGNAL(timeout()), currentCA, SLOT(simulate()));
+}
+
+void MainWindow::changeAutomaton(bool oneDimensional) {
+    currentCA = oneDimensional ? oneDimensionalCA : twoDimensionalCA;
+    ui->graphicsView->setScene(currentCA);
+    connectWithCurrentCA();
+    currentCA->render(getCellHeight(), getCellWidth());
+    ui->ruleBox->setVisible(oneDimensional);
+}
+
+int MainWindow::getCellHeight() {
+    return ui->graphicsView->geometry().height() / MATRIX_SIZE;
+}
+
+int MainWindow::getCellWidth() {
+    return ui->graphicsView->geometry().width() / MATRIX_SIZE;
+}
 
 MainWindow::~MainWindow() {
     delete ui;

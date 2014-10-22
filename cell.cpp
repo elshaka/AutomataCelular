@@ -22,6 +22,6 @@ void Cell::setNextAlive(bool nextAlive){
      this->nextAlive = nextAlive;
 }
 
-void Cell::mousePressEvent(QGraphicsSceneMouseEvent * event) {
+void Cell::mousePressEvent(QGraphicsSceneMouseEvent */*event*/) {
     setAlive(!isAlive());
 }
