@@ -4,7 +4,7 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     timer = new QTimer(this);
-    timer->setInterval(100);
+    timer->setInterval(200);
     oneDimensionalCA = new OneDimensionalCA(this);
     twoDimensionalCA = new TwoDimensionalCA(this);
     currentCA = oneDimensionalCA;
@@ -35,7 +35,7 @@ void MainWindow::simulate() {
 }
 
 void MainWindow::connectWithCurrentCA() {
-    connect(ui->clearButton, SIGNAL(clicked()), currentCA, SLOT(clearCells()));
+    connect(ui->clearButton, SIGNAL(clicked()), currentCA, SLOT(clear()));
     connect(ui->randomizeButton, SIGNAL(clicked()), currentCA, SLOT(randomize()));
     connect(timer, SIGNAL(timeout()), currentCA, SLOT(simulate()));
 }

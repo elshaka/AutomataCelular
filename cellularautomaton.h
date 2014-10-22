@@ -5,7 +5,6 @@
 
 #include <QGraphicsScene>
 #include <QTime>
-#include <QDebug>
 #include "cell.h"
 
 class CellularAutomaton : public QGraphicsScene {
@@ -16,7 +15,7 @@ public:
     CellularAutomaton(QObject *parent = 0);
     void render(int height, int width);
 public slots:
-    void clearCells();
+    void clear();
     virtual void randomize() = 0;
     virtual void simulate() = 0;
 };
