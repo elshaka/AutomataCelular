@@ -10,7 +10,7 @@ void OneDimensionalCA::randomize() {
     // Resto de filas en blanco
     for (int y = 1; y < MATRIX_SIZE; y++)
         for (int x = 0; x < MATRIX_SIZE; x++)
-            cells[x][y]->setAlive(qrand() % 2 == 1);
+            cells[x][y]->setAlive(qrand() % 2);
 }
 
 void OneDimensionalCA::simulate() {
@@ -27,16 +27,16 @@ void OneDimensionalCA::simulate() {
             if (i == 0)
                 left = 0;
             else
-                left = cells[i - 1][j]->isAlive() ? 1 : 0;
+                left = cells[i - 1][j]->isAlive();
 
-            center = cells[i][j]->isAlive() ? 1 : 0;
+            center = cells[i][j]->isAlive();
 
             if (i == MATRIX_SIZE - 1)
                 right = 0;
             else
-                right = cells[i + 1][j]->isAlive() ? 1 : 0;
+                right = cells[i + 1][j]->isAlive();
 
-            bool alive = rules[left * 4 + center * 2 + right * 1] == 1;
+            bool alive = rules[left * 4 + center * 2 + right * 1];
             cells[i][j + 1]->setAlive(alive);
         }
     }

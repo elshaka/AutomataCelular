@@ -15,13 +15,13 @@ void TwoDimensionalCA::simulate() {
             int neighbors = 0;
             for (int j = -1; j <= 1; j++)
                 for (int i = -1; i <= 1; i++)
-                    neighbors += cells[x+i][y+j]->isAlive() ? 1 : 0;
-            neighbors -= cells[x][y]->isAlive() ? 1 : 0;
+                    neighbors += cells[x+i][y+j]->isAlive();
+            neighbors -= cells[x][y]->isAlive();
 
             if (cells[x][y]->isAlive() && (neighbors < 2)) cells[x][y]->setNextAlive(false);
             else if (cells[x][y]->isAlive() && (neighbors > 3)) cells[x][y]->setNextAlive(false);
             else if (!cells[x][y]->isAlive() && (neighbors == 3)) cells[x][y]->setNextAlive(true);
-            else cells[x][y]->setNextAlive(cells[x][y]->isAlive() ? 1 : 0);
+            else cells[x][y]->setNextAlive(cells[x][y]->isAlive());
         }
     }
 
