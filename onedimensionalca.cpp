@@ -10,7 +10,7 @@ void OneDimensionalCA::randomize() {
     // Resto de filas en blanco
     for (int y = 1; y < MATRIX_SIZE; y++)
         for (int x = 0; x < MATRIX_SIZE; x++)
-            cells[x][y]->setAlive(qrand() % 2);
+            cells[x][y]->setAlive(false);
 }
 
 void OneDimensionalCA::simulate() {
