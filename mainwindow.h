@@ -18,9 +18,9 @@ class MainWindow : public QMainWindow {
     QTimer *timer;
     int getCellHeight();
     int getCellWidth();
-    void connectWithCurrentCA();
+    void connectWithCurrentAutomaton();
 public:
-    CellularAutomaton *oneDimensionalCA, *twoDimensionalCA, *currentCA;
+    CellularAutomaton *wolfram, *conway, *currentAutomaton;
     explicit MainWindow(QWidget *parent = 0);
     void showEvent(QShowEvent *event);
     ~MainWindow();
