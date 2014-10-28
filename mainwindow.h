@@ -5,8 +5,8 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QTimer>
-#include "onedimensionalca.h"
-#include "twodimensionalca.h"
+#include "wolfram.h"
+#include "conway.h"
 
 namespace Ui {
     class MainWindow;

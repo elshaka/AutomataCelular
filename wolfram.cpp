@@ -1,13 +1,13 @@
-#include "onedimensionalca.h"
+#include "wolfram.h"
 
-OneDimensionalCA::OneDimensionalCA(QObject *parent) : CellularAutomaton(parent) {}
+Wolfram::Wolfram(QObject *parent) : CellularAutomaton(parent) {}
 
-void OneDimensionalCA::setRule(int rule) {
+void Wolfram::setRule(int rule) {
     for (int i = 0; i < 8; i++)
         this->rule[i] = rule & (1 << i);
 }
 
-void OneDimensionalCA::randomize() {
+void Wolfram::randomize() {
     qsrand(QTime::currentTime().msec());
     for (int x = 0; x < MATRIX_SIZE; x++)
         cells[x][0]->setAlive(qrand() % 2);
@@ -16,7 +16,7 @@ void OneDimensionalCA::randomize() {
             cells[x][y]->setAlive(false);
 }
 
-void OneDimensionalCA::simulate() {
+void Wolfram::simulate() {
     int left, center, right;
     for (int j = 0; j < MATRIX_SIZE - 1; j++) {
         for (int i = 0; i < MATRIX_SIZE; i++) {

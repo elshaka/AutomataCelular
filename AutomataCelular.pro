@@ -16,13 +16,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     cell.cpp \
     cellularautomaton.cpp \
-    onedimensionalca.cpp \
-    twodimensionalca.cpp
+    wolfram.cpp \
+    conway.cpp
 
 HEADERS  += mainwindow.h \
     cell.h \
     cellularautomaton.h \
-    onedimensionalca.h \
-    twodimensionalca.h
+    wolfram.h \
+    conway.h
 
 FORMS    += mainwindow.ui

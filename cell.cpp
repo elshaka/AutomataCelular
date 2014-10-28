@@ -10,7 +10,7 @@ bool Cell::isAlive() {
 }
 
 bool Cell::willLive() {
-     return nextAlive;
+    return nextAlive;
 }
 
 void Cell::setAlive(bool alive) {
@@ -18,7 +18,7 @@ void Cell::setAlive(bool alive) {
     setBrush(alive ? Qt::black : Qt::white);
 }
 
-void Cell::setNextAlive(bool nextAlive){
+void Cell::setNextAlive(bool nextAlive) {
      this->nextAlive = nextAlive;
 }
 

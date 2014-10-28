@@ -5,14 +5,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->setupUi(this);
     timer = new QTimer(this);
     timer->setInterval(200);
-    oneDimensionalCA = new OneDimensionalCA(this);
-    twoDimensionalCA = new TwoDimensionalCA(this);
+    oneDimensionalCA = new Wolfram(this);
+    twoDimensionalCA = new Conway(this);
     currentCA = oneDimensionalCA;
     ui->graphicsView->setScene(currentCA);
-    ((OneDimensionalCA*) oneDimensionalCA)->setRule(ui->ruleSpinBox->value());
+    ((Wolfram*) oneDimensionalCA)->setRule(ui->ruleSpinBox->value());
 
     connect(ui->oneDimensionalButton, SIGNAL(toggled(bool)), this, SLOT(changeAutomaton(bool)));
-    connect(ui->ruleSpinBox, SIGNAL(valueChanged(int)), (OneDimensionalCA*) oneDimensionalCA, SLOT(setRule(int)));
+    connect(ui->ruleSpinBox, SIGNAL(valueChanged(int)), (Wolfram*) oneDimensionalCA, SLOT(setRule(int)));
     connect(ui->runButton, SIGNAL(clicked()), this, SLOT(simulate()));
     connect(ui->stopButton, SIGNAL(clicked()), this, SLOT(simulate()));
     connectWithCurrentCA();
